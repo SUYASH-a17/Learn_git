@@ -12,3 +12,4 @@ git restore --staged README.md - restore the readme file before committing to th
 git restore . - restore the changes
 gitignore - store text/data which won't be tracked by git
 global ignore file- git config --global core.excludesfile [file]
+git rm -r --cached [file/folder/.]- clear the cache
