@@ -18,3 +18,4 @@ git mv home.html index.html - rename a file
 git diff - shows the difference between 2 commit
 git log --oneline - shows logs in oneline with a hash number
 git commit --amend - modifies/make changes to a commit
+git reset [hash#] - reset the commit msg
