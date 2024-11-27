@@ -10,3 +10,5 @@ git log - get the log of all the commits
 git status - shows the current state of the working directory and staging area, to understand what changes have been made and which are ready to be committed.
 git restore --staged README.md - restore the readme file before committing to the previous stage.
 git restore . - restore the changes
+gitignore - store text/data which won't be tracked by git
+global ignore file- git config --global core.excludesfile [file]
