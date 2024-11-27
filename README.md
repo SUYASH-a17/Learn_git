@@ -14,3 +14,4 @@ gitignore - store text/data which won't be tracked by git
 global ignore file- git config --global core.excludesfile [file]
 git rm -r --cached [file/folder/.]- clear the cache
 git rm home.html - deletes the file and moves to staging(does the git add . command) for us so we are ready to commit
+git mv home.html index.html - rename a file
