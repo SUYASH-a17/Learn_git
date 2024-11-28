@@ -41,3 +41,7 @@ Commands:
 # u, update-ref <ref> = track a placeholder for the <ref> to be updated
 #                       to this position in the new commits. The <ref> is
 #                       updated at the end of the rebase
+GIT FLOW
+    git switch -c ['branch_name'] - create a new branch and make the required changes in it 
+    git merge ['branch_name'] - merge the new branch with the current/main branch
+    git branch -d ['branch_name'] - delete the new branch after making changes
