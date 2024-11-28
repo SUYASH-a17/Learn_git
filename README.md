@@ -45,3 +45,5 @@ GIT FLOW
     git switch -c ['branch_name'] - create a new branch and make the required changes in it 
     git merge ['branch_name'] - merge the new branch with the current/main branch
     git branch -d ['branch_name'] - delete the new branch after making changes
+
+git merge --abort -  abort the merge
