@@ -47,3 +47,5 @@ GIT FLOW
     git branch -d ['branch_name'] - delete the new branch after making changes
 
 git merge --abort -  abort the merge
+git stash - Temporarily saves changes in your working directory without committing them, allowing you to switch branches or work on something else.
+git clean - Removes untracked files and directories from your working directory.
