@@ -1,44 +1,180 @@
-# Learning Git
+# 🧩 Git Command Guide
 
-## Basic Commands
-- **`git init`**: Initializes an empty repo by creating `.git` file
-- **`rm -rf .git`**: Removes the `.git` file and deletes the entire working history
-- **`ls -la`**: Shows the list of files in the repo
-- **`git add -A`**: Stages all changes in the repository, regardless of their status (new, modified, or deleted)
-- **`git commit -m 'First Commit'`**: Makes a first commit
-- **`git log`**: Gets the log of all the commits
-- **`git status`**: Shows the current state of the working directory and staging area to understand what changes have been made and which are ready to be committed
-- **`git restore --staged [file_name]`**: Restores the file before committing to the previous stage
-- **`git restore .`**: Restores the changes
-- **`.gitignore`**: Stores text/data which won't be tracked by Git
-  - **Global ignore file**: `git config --global core.excludesfile [file]`
-- **`git rm -r --cached [file/folder/.]`**: Clears the cache
-- **`git rm home.html`**: Deletes the file and moves it to staging, making it ready to commit
-- **`git mv home.html index.html`**: Renames a file
-- **`git diff`**: Shows the difference between two commits
-- **`git log --oneline`**: Shows logs in one line with a hash number
-- **`git commit --amend`**: Modifies/makes changes to a commit
-- **`git reset [hash#]`**: Resets the commit message
-- **`git reset --hard [hash#]`**: Rewinds back to a specific commit history and goes forward from there, deleting all the files after the hash#
+A complete categorized reference for Git — from creating a repo and uploading a project to branching, merging, undoing, and managing remotes.
 
-## Rebase Commands
-- **p, pick**: Use commit
-- **r, reword**: Use commit, but edit the commit message
-- **e, edit**: Use commit, but stop for amending
-- **s, squash**: Use commit, but meld into previous commit
-- **f, fixup [-C | -c]**: Like "squash" but keeps only the previous commit's log message, unless `-C` is used, in which case keeps only this commit's message; `-c` is the same as `-C` but opens the editor
-- **x, exec**: Run command (the rest of the line) using shell
-- **b, break**: Stop here (continue rebase later with `git rebase --continue`)
-- **d, drop**: Remove commit
-- **l, label**: Label current HEAD with a name
-- **t, reset**: Reset HEAD to a label
-- **m, merge [-C | -c] [# ]**: Create a merge commit using the original merge commit's message (or the one line, if no original merge commit was specified); use `-c` to reword the commit message
-- **u, update-ref**: Track a placeholder for the to be updated to this position in the new commits. The is updated at the end of the rebase
+---
 
-## Git Flow Commands
-- **`git switch -c ['branch_name']`**: Create a new branch and make the required changes in it
-- **`git merge ['branch_name']`**: Merge the new branch with the current/main branch
-- **`git branch -d ['branch_name']`**: Delete the new branch after making changes
-- **`git merge --abort`**: Abort the merge
-- **`git stash`**: Temporarily saves changes in your working directory without committing them, allowing you to switch branches or work on something else
-- **`git clean`**: Removes untracked files and directories from your working directory
+## 🧱 1. Basics — Create a Repo & Upload a Project
+
+`
+git init                      # Initialize a new Git repository  
+ls -la                        # Verify .git directory  
+git add -A                    # Stage all files  
+git commit -m "Initial commit" # Save a snapshot  
+git branch -M main            # Rename current branch to main  
+git remote add origin <repo_url>  # Connect to remote (GitHub)  
+git remote -v                 # Verify remote  
+git push -u origin main       # Push commits to GitHub  
+git pull                      # Fetch + merge remote changes  
+`
+
+---
+
+## 🗂️ 2. Staging, Committing & Tracking
+
+`
+git add .                     # Stage modified/new files  
+git add <file>                # Stage specific file  
+git restore --staged <file>   # Unstage a file  
+git status                    # Check working directory status  
+git commit -m "message"       # Commit staged files  
+git commit --amend            # Modify last commit  
+git commit -am "message"      # Skip staging (for tracked files)  
+`
+
+---
+
+## 🔍 3. Viewing History & Changes
+
+`
+git log                       # Show full commit history  
+git log --oneline             # One-line summary of commits  
+git log --oneline --graph --decorate --all  # Visualize branches  
+git diff                      # Show unstaged changes  
+git diff --staged             # Show staged changes  
+git show <commit_hash>        # Show specific commit details  
+`
+
+---
+
+## 🌿 4. Branching & Merging
+
+`
+git branch                    # List branches  
+git branch <name>             # Create new branch  
+git switch <name>             # Switch to branch (modern)  
+git switch -c <name>          # Create + switch  
+git merge <branch>            # Merge branch into current  
+git branch -d <branch>        # Delete merged branch  
+git branch -D <branch>        # Force delete branch  
+`
+
+---
+
+## 🌐 5. Remote Repositories
+
+`
+git remote add origin <url>   # Add remote repo  
+git remote -v                 # View remotes  
+git remote remove origin      # Remove remote  
+git fetch                     # Download objects and refs  
+git pull                      # Fetch + merge  
+git push origin <branch>      # Push a specific branch  
+git push --all                # Push all branches  
+git push origin --delete <branch>  # Delete remote branch  
+git push -u origin <branch>   # Set upstream tracking  
+`
+
+---
+
+## ♻️ 6. Undoing / Fixing Mistakes
+
+`
+git restore --staged <file>   # Unstage file  
+git restore <file>            # Discard unstaged changes  
+git restore .                 # Discard all local changes  
+git reset --soft HEAD~1       # Undo last commit (keep staged)  
+git reset --mixed HEAD~1      # Undo last commit (keep changes unstaged)  
+git reset --hard HEAD~1       # Undo last commit (discard all changes)  
+git revert <commit_hash>      # Create new commit that undoes old one  
+`
+
+---
+
+## 📁 7. Renaming, Deleting, Moving Files
+
+`
+git rm <file>                 # Delete tracked file  
+git rm -r <dir>               # Delete tracked directory  
+git rm --cached <file>        # Stop tracking (keep local)  
+git mv <old> <new>            # Rename/move file  
+`
+
+---
+
+## 🚫 8. Ignoring Files
+
+`
+# .gitignore file  
+node_modules/  
+dist/  
+.env  
+*.log  
+.DS_Store  
+
+# Global ignore  
+git config --global core.excludesfile ~/.gitignore_global  
+`
+
+---
+
+## 💾 9. Stashing (Temporary Save)
+
+`
+git stash                     # Save uncommitted changes  
+git stash list                # View all stashes  
+git stash pop                 # Apply & remove last stash  
+git stash apply               # Apply without removing  
+git stash drop                # Delete a stash  
+git stash clear               # Clear all stashes  
+`
+
+---
+
+## 🧠 10. Advanced & Inspection
+
+`
+git ls-files                  # Show tracked files  
+git config --list             # View Git config  
+git config user.name "Name"   # Set local username  
+git config user.email "Email" # Set local email  
+git config --global user.name "Name"  # Set global username  
+git cat-file -p <hash>        # Inspect commit/blob/tree  
+`
+
+---
+
+## 🧹 11. Cleaning
+
+`
+git clean -n                  # Preview untracked files  
+git clean -f                  # Remove untracked files  
+git clean -fd                 # Remove untracked files + folders  
+`
+
+---
+
+## 🏁 12. Minimum Commands to Upload Any Project
+
+`
+cd project-folder  
+git init  
+git add -A  
+git commit -m "Initial commit"  
+git branch -M main  
+git remote add origin https://github.com/username/repo.git  
+git push -u origin main  
+`
+
+---
+
+## 🧾 Pro Tips
+
+- Use `git status` and `git log --oneline --graph` often.  
+- Prefer `git revert` over `git reset --hard` for public repos.  
+- Commit frequently with meaningful messages.  
+- Add `.gitignore` before the first commit to avoid tracking unwanted files.  
+
+---
+
+⭐ **Save this guide** — it’s your quick reference to every Git command you’ll ever need.
