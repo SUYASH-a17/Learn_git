@@ -1,180 +1,125 @@
-# 🧩 Git Command Guide
+# -------------------------
+# 1. Basics — Create & upload
+# -------------------------
+git init                      # Initialize a new Git repository (creates .git directory)
+ls -la                        # Show files (verify .git created)
+git add -A                    # Stage all changes (new, modified, deleted)
+git commit -m "Initial commit" # Commit staged changes with a message
+git branch -M main            # Rename current branch to 'main'
+git remote add origin <repo_url>  # Add remote repo URL (GitHub)
+git remote -v                 # Verify remote(s) are set
+git push -u origin main       # Push local main to remote and set upstream
+git pull                      # Fetch + merge remote changes
 
-A complete categorized reference for Git — from creating a repo and uploading a project to branching, merging, undoing, and managing remotes.
+# ------------------------------------
+# 2. Staging, Committing & Tracking
+# ------------------------------------
+git add .                     # Stage modified and new files in current dir
+git add <file>                # Stage a specific file
+git restore --staged <file>   # Unstage a file (keep working-tree changes)
+git status                    # Show working tree and staging status
+git commit -m "message"       # Commit staged files with message
+git commit --amend            # Amend the last commit (message or content)
+git commit -am "message"      # Add & commit tracked files (skips staging step for tracked files)
 
----
+# ------------------------------------
+# 3. Viewing history & differences
+# ------------------------------------
+git log                       # Show full commit history
+git log --oneline             # Compact one-line summary of commits
+git log --oneline --graph --decorate --all  # Visualize branches & merges
+git diff                      # Show unstaged changes (working tree vs index)
+git diff --staged             # Show staged changes (index vs HEAD)
+git show <commit_hash>        # Show details & diff of a specific commit
 
-## 🧱 1. Basics — Create a Repo & Upload a Project
+# ------------------------------------
+# 4. Branching & merging
+# ------------------------------------
+git branch                    # List local branches
+git branch <name>             # Create a new branch
+git switch <name>             # Switch to branch (newer, clearer than checkout)
+git switch -c <name>          # Create and switch to a new branch
+git merge <branch>            # Merge <branch> into current branch
+git branch -d <branch>        # Delete branch (safe delete if merged)
+git branch -D <branch>        # Force delete branch (even if unmerged)
 
-`
-git init                      # Initialize a new Git repository  
-ls -la                        # Verify .git directory  
-git add -A                    # Stage all files  
-git commit -m "Initial commit" # Save a snapshot  
-git branch -M main            # Rename current branch to main  
-git remote add origin <repo_url>  # Connect to remote (GitHub)  
-git remote -v                 # Verify remote  
-git push -u origin main       # Push commits to GitHub  
-git pull                      # Fetch + merge remote changes  
-`
+# ------------------------------------
+# 5. Remotes
+# ------------------------------------
+git remote add origin <url>   # Add a remote named 'origin'
+git remote -v                 # Show remotes + URLs
+git remote remove origin      # Remove the 'origin' remote
+git fetch                     # Download remote refs & objects (no merge)
+git pull                      # Fetch + merge (default)
+git push origin <branch>      # Push a branch to the remote
+git push --all                # Push all branches
+git push origin --delete <branch>  # Delete a branch on the remote
+git push -u origin <branch>   # Push and set remote tracking for this branch
 
----
+# ------------------------------------
+# 6. Undo / fix mistakes
+# ------------------------------------
+git restore --staged <file>   # Unstage (remove from index) but keep working changes
+git restore <file>            # Discard unstaged working-tree changes for <file>
+git restore .                 # Discard all unstaged changes (working tree → index state)
+git reset --soft HEAD~1       # Move HEAD back 1 commit; keep changes staged
+git reset --mixed HEAD~1      # Move HEAD back 1 commit; keep changes unstaged (default)
+git reset --hard HEAD~1       # Move HEAD back 1 commit and discard all changes (destructive)
+git revert <commit_hash>      # Create a new commit that reverses <commit_hash> (safe for published history)
 
-## 🗂️ 2. Staging, Committing & Tracking
+# ------------------------------------
+# 7. File operations
+# ------------------------------------
+git rm <file>                 # Remove tracked file and stage deletion
+git rm -r <dir>               # Remove tracked directory recursively
+git rm --cached <file>        # Stop tracking file but keep it locally
+git mv <old> <new>            # Rename/move file and stage the change
 
-`
-git add .                     # Stage modified/new files  
-git add <file>                # Stage specific file  
-git restore --staged <file>   # Unstage a file  
-git status                    # Check working directory status  
-git commit -m "message"       # Commit staged files  
-git commit --amend            # Modify last commit  
-git commit -am "message"      # Skip staging (for tracked files)  
-`
+# ------------------------------------
+# 8. Ignore files
+# ------------------------------------
+# Add a .gitignore file with entries like:
+# node_modules/
+# dist/
+# .env
+# *.log
+# .DS_Store
+git config --global core.excludesfile ~/.gitignore_global  # Set a global ignore file
 
----
+# ------------------------------------
+# 9. Stashing (temporary save)
+# ------------------------------------
+git stash                     # Save uncommitted changes to a stack
+git stash list                # List stashes
+git stash pop                 # Reapply last stash and drop it
+git stash apply               # Reapply stash but keep it in the stash list
+git stash drop                # Delete a stash entry
+git stash clear               # Remove all stashes
 
-## 🔍 3. Viewing History & Changes
+# ------------------------------------
+# 10. Advanced / inspection
+# ------------------------------------
+git ls-files                  # List files tracked by Git
+git config --list             # Show Git configuration
+git config user.name "Name"   # Set repo-local username
+git config user.email "a@b"   # Set repo-local email
+git config --global user.name "Name"  # Set global username
+git cat-file -p <hash>        # Inspect an object (commit/blob/tree)
 
-`
-git log                       # Show full commit history  
-git log --oneline             # One-line summary of commits  
-git log --oneline --graph --decorate --all  # Visualize branches  
-git diff                      # Show unstaged changes  
-git diff --staged             # Show staged changes  
-git show <commit_hash>        # Show specific commit details  
-`
+# ------------------------------------
+# 11. Cleaning (destructive!)
+# ------------------------------------
+git clean -n                  # Show which untracked files would be removed (dry-run)
+git clean -f                  # Remove untracked files
+git clean -fd                 # Remove untracked files and directories
 
----
-
-## 🌿 4. Branching & Merging
-
-`
-git branch                    # List branches  
-git branch <name>             # Create new branch  
-git switch <name>             # Switch to branch (modern)  
-git switch -c <name>          # Create + switch  
-git merge <branch>            # Merge branch into current  
-git branch -d <branch>        # Delete merged branch  
-git branch -D <branch>        # Force delete branch  
-`
-
----
-
-## 🌐 5. Remote Repositories
-
-`
-git remote add origin <url>   # Add remote repo  
-git remote -v                 # View remotes  
-git remote remove origin      # Remove remote  
-git fetch                     # Download objects and refs  
-git pull                      # Fetch + merge  
-git push origin <branch>      # Push a specific branch  
-git push --all                # Push all branches  
-git push origin --delete <branch>  # Delete remote branch  
-git push -u origin <branch>   # Set upstream tracking  
-`
-
----
-
-## ♻️ 6. Undoing / Fixing Mistakes
-
-`
-git restore --staged <file>   # Unstage file  
-git restore <file>            # Discard unstaged changes  
-git restore .                 # Discard all local changes  
-git reset --soft HEAD~1       # Undo last commit (keep staged)  
-git reset --mixed HEAD~1      # Undo last commit (keep changes unstaged)  
-git reset --hard HEAD~1       # Undo last commit (discard all changes)  
-git revert <commit_hash>      # Create new commit that undoes old one  
-`
-
----
-
-## 📁 7. Renaming, Deleting, Moving Files
-
-`
-git rm <file>                 # Delete tracked file  
-git rm -r <dir>               # Delete tracked directory  
-git rm --cached <file>        # Stop tracking (keep local)  
-git mv <old> <new>            # Rename/move file  
-`
-
----
-
-## 🚫 8. Ignoring Files
-
-`
-# .gitignore file  
-node_modules/  
-dist/  
-.env  
-*.log  
-.DS_Store  
-
-# Global ignore  
-git config --global core.excludesfile ~/.gitignore_global  
-`
-
----
-
-## 💾 9. Stashing (Temporary Save)
-
-`
-git stash                     # Save uncommitted changes  
-git stash list                # View all stashes  
-git stash pop                 # Apply & remove last stash  
-git stash apply               # Apply without removing  
-git stash drop                # Delete a stash  
-git stash clear               # Clear all stashes  
-`
-
----
-
-## 🧠 10. Advanced & Inspection
-
-`
-git ls-files                  # Show tracked files  
-git config --list             # View Git config  
-git config user.name "Name"   # Set local username  
-git config user.email "Email" # Set local email  
-git config --global user.name "Name"  # Set global username  
-git cat-file -p <hash>        # Inspect commit/blob/tree  
-`
-
----
-
-## 🧹 11. Cleaning
-
-`
-git clean -n                  # Preview untracked files  
-git clean -f                  # Remove untracked files  
-git clean -fd                 # Remove untracked files + folders  
-`
-
----
-
-## 🏁 12. Minimum Commands to Upload Any Project
-
-`
-cd project-folder  
-git init  
-git add -A  
-git commit -m "Initial commit"  
-git branch -M main  
-git remote add origin https://github.com/username/repo.git  
-git push -u origin main  
-`
-
----
-
-## 🧾 Pro Tips
-
-- Use `git status` and `git log --oneline --graph` often.  
-- Prefer `git revert` over `git reset --hard` for public repos.  
-- Commit frequently with meaningful messages.  
-- Add `.gitignore` before the first commit to avoid tracking unwanted files.  
-
----
-
-⭐ **Save this guide** — it’s your quick reference to every Git command you’ll ever need.
+# ------------------------------------
+# 12. Minimum sequence to upload a project
+# ------------------------------------
+cd project-folder
+git init
+git add -A
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/repo.git
+git push -u origin main
