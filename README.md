@@ -1,10 +1,10 @@
-# 🧩 Git Command Guide
+# Git Command Guide
 
 A complete categorized reference for Git — from creating a repo and uploading a project to branching, merging, undoing, and managing remotes.
 
 ---
 
-## 🧱 1. Basics — Create a Repo & Upload a Project
+## 1. Basics — Create a Repo & Upload a Project
 
 `git init`  
 Initialize a new Git repository.
@@ -35,7 +35,7 @@ Fetch and merge changes from the remote repository.
 
 ---
 
-## 🗂️ 2. Staging, Committing & Tracking
+## 2. Staging, Committing & Tracking
 
 `git add .`  
 Stage all modified or new files in the current directory.
@@ -60,7 +60,7 @@ Stage and commit tracked files in one command.
 
 ---
 
-## 🔍 3. Viewing History & Changes
+## 3. Viewing History & Changes
 
 `git log`  
 Display the complete commit history.
@@ -82,7 +82,7 @@ Display details of a specific commit.
 
 ---
 
-## 🌿 4. Branching & Merging
+## 4. Branching & Merging
 
 `git branch`  
 List all branches in the repository.
@@ -107,7 +107,7 @@ Force delete a branch that hasn’t been merged.
 
 ---
 
-## 🌐 5. Remote Repositories
+## 5. Remote Repositories
 
 `git remote add origin <url>`  
 Add a remote repository to your local project.
@@ -138,7 +138,7 @@ Push and set an upstream tracking branch.
 
 ---
 
-## ♻️ 6. Undoing / Fixing Mistakes
+## 6. Undoing / Fixing Mistakes
 
 `git restore --staged <file>`  
 Unstage a file that was added accidentally.
@@ -163,7 +163,7 @@ Create a new commit that reverses the effects of a specific commit (safe undo).
 
 ---
 
-## 📁 7. Renaming, Deleting, Moving Files
+## 7. Renaming, Deleting, Moving Files
 
 `git rm <file>`  
 Delete a tracked file and stage the removal.
@@ -179,7 +179,7 @@ Rename or move a file and stage the change.
 
 ---
 
-## 🚫 8. Ignoring Files
+## 8. Ignoring Files
 
 `.gitignore`  
 Tells Git which files or directories to ignore.
@@ -204,7 +204,7 @@ Set a global `.gitignore` file for all repositories.
 
 ---
 
-## 💾 9. Stashing (Temporary Save)
+## 9. Stashing (Temporary Save)
 
 `git stash`  
 Temporarily save uncommitted changes to a stack.
@@ -226,7 +226,7 @@ Remove all stashed changes.
 
 ---
 
-## 🧠 10. Advanced & Inspection
+## 10. Advanced & Inspection
 
 `git ls-files`  
 List all tracked files in the repository.
@@ -248,7 +248,7 @@ Inspect the contents of a Git object (commit/tree/blob).
 
 ---
 
-## 🧹 11. Cleaning
+## 11. Cleaning
 
 `git clean -n`  
 Preview which untracked files will be deleted (dry run).
@@ -261,7 +261,7 @@ Delete untracked files and directories.
 
 ---
 
-## 🏁 12. Minimum Commands to Upload Any Project
+## 12. Minimum Commands to Upload Any Project
 
 `cd project-folder`  
 Navigate to your project directory.
@@ -286,7 +286,7 @@ Push your local code to GitHub and set upstream tracking.
 
 ---
 
-## 🧾 Pro Tips
+## Pro Tips
 
 `git status`  
 Check repository status frequently to stay updated on changes.
@@ -306,3 +306,4 @@ Always add one before your first commit to avoid tracking unwanted files.
 ---
 
 ⭐ **Save this guide** — it’s your quick reference to every Git command you’ll ever need.
+
